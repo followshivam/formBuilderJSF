@@ -13,23 +13,11 @@ import javax.faces.bean.SessionScoped;
  *
  * @author GOLDY
  */
-@ManagedBean(name = "textBean")
-@SessionScoped
-public class textBean {
+public class TextField extends ParentComponent{
     
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    
-    
-    public textBean() {
+    public TextField() {
     }
     
 }

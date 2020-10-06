@@ -20,7 +20,6 @@ import javax.faces.context.FacesContext;
 @ApplicationScoped
 public class sectionBean2 {
     private String surveyTitle=null;
-    private String clickedID;
     private int sectionIndex=0;
     private int itemIndex=8;
     private String name; // label of the field
@@ -38,14 +37,6 @@ public class sectionBean2 {
     public void setSurveyTitle(String SurveyTitle) {
         this.surveyTitle = surveyTitle;
     }
-    public String getClickedID() {
-        return clickedID;
-    }
-
-    public void setClickedID(String clickedID) {
-        this.clickedID = clickedID;
-    }
-    
     public int getSectionIndex() {
         return sectionIndex;
     }
@@ -123,8 +114,7 @@ public class sectionBean2 {
         for(int i= 0; i<itemIndex ; i++) { 
             sections[i] = new ArrayList<sectionBean2>(); 
         } }
-        
-        sectionBean2 sectionItem=new sectionBean2(name,key,value,type);
+       sectionBean2 sectionItem=new sectionBean2(name,key,value,type);
         sections[sectionIndex].add(sectionItem);
         sectionIndex=sectionIndex+1;
         
@@ -139,14 +129,7 @@ public class sectionBean2 {
         System.out.print(surveyTitle);
         return "index.xhtml?faces-redirect=true";
     }
-    public String selectSectionIndex(){
-            String id=clickedID;
-            String[] parts=id.split(":");
-            int a=Integer.parseInt(parts[2]);
-            System.out.println(a);
-            sectionIndex=a;
-            return "index.xhtml?faces-redirect=true";
-    }
+
     
     
 }

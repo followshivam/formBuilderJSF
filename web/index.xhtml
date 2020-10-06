@@ -9,23 +9,25 @@
          <h:outputStylesheet library="css" name="styles.css"/>
         <script src="jquery-3.5.1.js" type="text/javascript"></script>
         <script type="text/javascript">
-           function handleClick(){
-               
+           function handleClick(ref){
+               var a=(ref.id);
+               var arr=a.split(":");
+               console.log(parseInt(arr[2])+1);
+               document.getElementById("form-id:hidden-section").value=parseInt(arr[2])+1;
+               document.getElementById("form-id:clickedid").click();
            }           
         </script>
     </h:head>
     <h:body>
-        <!--Header-->
-        <h1 class="header">Form Builder 📃</h1> <br/>
-        <!--Survey Title-->
-        
             <h:panelGroup layout="block" class="form-div" >
-            <h:form id="form-id" prependId="true">
-               
-                <h:inputHidden id="hidden-section" value="#{sectionBean2.sectionIndex}"></h:inputHidden>
-                <h:inputTextarea value="#{sectionBean2.name}" id="section1" required="true"
-                             requiredMessage="Please fill this field"/>
+            <h:form class="classforform" id="form-id" prependId="true">
                 
+                <h:panelGroup class="button-group" rendered="true">
+                <h1 class="header">Form Builder 📃</h1> <br/>
+                 <h:inputHidden id="hidden-section" value="#{sectionBean2.sectionIndex}"></h:inputHidden>
+                 <h:commandLink id="clickedid" >
+                     <f:ajax execute="hidden-section" />
+                 </h:commandLink>
                 <h:commandButton class="button" value="Add TEXT" action="#{sectionBean2.addItem()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='TEXT' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
@@ -56,15 +58,15 @@
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
                      <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
                 </h:commandButton>
-                
+                </h:panelGroup>
+                <h:panelGroup class="outer-item" >
+                <h:panelGroup class="item">    
                 <h:outputText id="section" class="header-section" value="Form" rendered="true" />
-                
                 <ui:repeat value="#{sectionBean2.sections}" var="section" id="ui-outer">
                     <ui:repeat value="#{section}" var="item" id="ui-inner">
-                    <h:panelGroup class="item">
-                        <h:outputText id="section" class="added-section" value="#{item.name}" rendered="#{item.type == 'SECTION'}">
-                            <!--<f:ajax execute="@this.id" render="#{sectionBean2.clickedID}" event="click" listener="#{sectionBean2.selectSectionIndex}" />-->
-                        </h:outputText>
+                        
+                        <h:outputLabel id="section" class="added-section" value="#{item.name}" onclick="handleClick(this)" rendered="#{item.type == 'SECTION'}">
+                        </h:outputLabel>
                         <h:inputText class="added-item" value="#{item.name}" rendered="#{item.type == 'TEXT'}" />
                         <h:inputSecret class="added-item" value="#{item.name}" rendered="#{item.type == 'SECRET'}" />
                         <h:inputTextarea class="added-item" value="#{item.name}" rendered="#{item.type == 'TEXTAREA'}" />
@@ -74,37 +76,24 @@
                             <f:selectItem itemValue = "1" itemLabel = "Item 1" />
                             <f:selectItem itemValue = "2" itemLabel = "Item 2" />
                         </h:selectOneMenu>
-                    </h:panelGroup>
                     </ui:repeat>    
                 </ui:repeat>
+                </h:panelGroup>
                 <h:panelGroup class="add-section">
-                <h:inputTextarea value="#{sectionBean2.name}" id="section2" required="true"
+                <h:inputTextarea value="#{sectionBean2.name}" id="section2" required="false"
                              requiredMessage="Please fill this field"/>
-                
                 <h:commandButton class="button" value="Add Section" action="#{sectionBean2.addSection()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='SECTION' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
                      <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
                 </h:commandButton>
                 </h:panelGroup>
+                </h:panelGroup>
                 
             </h:form>
         </h:panelGroup>
          
         <script type="text/javascript">
-           
-            $(document.getElementById('form-id:ui-outer:0:ui-inner:0:section')).click(function(){
-                var id=event.target.id;
-                console.log(id);
-            });
-            
-//            $.ajax({
-//                    url:'#sectionBean2.selectID',
-//                    data:{event.target.id},
-//                    method:'post',
-//                    success:'#sectionBean2.selectSectionIndex()',
-//                    contentType:'xml'
-//                })
            
         </script>
     </h:body>
