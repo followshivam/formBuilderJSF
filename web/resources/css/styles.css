@@ -1,0 +1,64 @@
+
+*{
+    box-sizing: border-box;
+    outline: none;
+    
+}
+.body{
+    margin:0;
+    padding:0;
+}
+.header{
+    color:#41aea9;
+}
+.form-id{
+}
+.section-header{
+    font-size: 2em;
+    display:inline-block;
+    width:100%;
+    border: 2px solid grey;
+    text-align: center;
+    margin-top:0.5em;
+}
+.added-section{
+    text-align: center;
+}
+.item{
+    text-align: center;
+ }
+.item .added-section{
+    text-align: center;
+    font-family: monospace;
+    font-size: 2em;
+    text-transform: uppercase;
+    background-color: #eeeeee;
+    display:inline-block;
+    width:100%;
+    height:1.5em;
+    margin-top: 1em;
+    border: 0.5px solid black;
+    color:#41aea9;
+    text-align: center;
+    
+}
+.item .added-item {
+    width:50%;
+    text-align: left;
+    border: 0.1px solid grey;
+    display:block;
+    text-align: center;
+    position:relative;
+    left:30%;
+}
+.header-section{
+    display:block;
+    width:100%;
+    text-align: center;font-family: monospace;
+    font-size: 2em;
+    text-transform: uppercase;
+    background-color: #eeeeee; 
+}
+.add-section{
+    
+}
