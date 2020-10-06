@@ -28,6 +28,13 @@
                  <h:commandLink id="clickedid" >
                      <f:ajax execute="hidden-section" />
                  </h:commandLink>
+                 <h:inputTextarea value="#{sectionBean2.name}" id="section2" required="true"
+                             requiredMessage="Please fill this field"/>
+                <h:commandButton class="button" value="Add Section" action="#{sectionBean2.addSection()}">
+                     <f:setPropertyActionListener target="#{sectionBean2.type}" value='SECTION' />
+                     <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
+                     <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
+                </h:commandButton>
                 <h:commandButton class="button" value="Add TEXT" action="#{sectionBean2.addItem()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='TEXT' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
@@ -65,14 +72,20 @@
                 <ui:repeat value="#{sectionBean2.sections}" var="section" id="ui-outer">
                     <ui:repeat value="#{section}" var="item" id="ui-inner">
                         
+                        
                         <h:outputLabel id="section" class="added-section" value="#{item.name}" onclick="handleClick(this)" rendered="#{item.type == 'SECTION'}">
                         </h:outputLabel>
-                        <h:inputText class="added-item" value="#{item.name}" rendered="#{item.type == 'TEXT'}" />
-                        <h:inputSecret class="added-item" value="#{item.name}" rendered="#{item.type == 'SECRET'}" />
-                        <h:inputTextarea class="added-item" value="#{item.name}" rendered="#{item.type == 'TEXTAREA'}" />
-                        <h:selectBooleanCheckbox class="added-item" value="#{item.name}" rendered="#{item.type == 'CHECKONE'}" />
+                        <h:outputLabel for="input-text" value="#{item.name}"  rendered="#{item.type == 'TEXT'}" /> 
+                        <h:inputText id="input-text" class="added-item" value="Enter answer here" rendered="#{item.type == 'TEXT'}" />
+                        <h:outputLabel for="secret-text" value="#{item.name}"  rendered="#{item.type == 'SECRET'}" /> 
+                        <h:inputSecret id="secret-text" class="added-item" value="secret" rendered="#{item.type == 'SECRET'}" />
+                        <h:outputLabel for="text-area" value="#{item.name}"  rendered="#{item.type == 'TEXTAREA'}" /> 
+                        <h:inputTextarea id="text-area" class="added-item" value="textarea" rendered="#{item.type == 'TEXTAREA'}" />
+                        <h:outputLabel for="checkone-text" value="#{item.name}"  rendered="#{item.type == 'CHECKONE'}" /> 
+                        <h:selectBooleanCheckbox id="checkone-text" class="added-item" value="checkone" rendered="#{item.type == 'CHECKONE'}" />
                         <h:outputLabel class="added-item" value="#{item.name}" for="text1" rendered="#{item.type == 'LABEL'}" />
-                        <h:selectOneMenu class="added-item" value = "#{item.name}" rendered="#{item.type == 'COMBOBOX'}">
+                        <h:outputLabel for="combobox-text" value="#{item.name}"  rendered="#{item.type == 'COMBOBOX'}" /> 
+                        <h:selectOneMenu id="combobox-text" class="added-item" value ="combobox" rendered="#{item.type == 'COMBOBOX'}">
                             <f:selectItem itemValue = "1" itemLabel = "Item 1" />
                             <f:selectItem itemValue = "2" itemLabel = "Item 2" />
                         </h:selectOneMenu>
@@ -80,13 +93,7 @@
                 </ui:repeat>
                 </h:panelGroup>
                 <h:panelGroup class="add-section">
-                <h:inputTextarea value="#{sectionBean2.name}" id="section2" required="false"
-                             requiredMessage="Please fill this field"/>
-                <h:commandButton class="button" value="Add Section" action="#{sectionBean2.addSection()}">
-                     <f:setPropertyActionListener target="#{sectionBean2.type}" value='SECTION' />
-                     <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
-                     <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
-                </h:commandButton>
+                
                 </h:panelGroup>
                 </h:panelGroup>
                 
