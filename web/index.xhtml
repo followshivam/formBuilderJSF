@@ -82,16 +82,16 @@
                             <h:inputText class="section-input" id="input-section" value="#{item.name}" rendered="true" />
                             <h:commandButton class="section-button" value="+" action="#{item.setSectionname()}"/>
                         </h:outputLabel>
-                        <h:outputLabel for="input-text" value="#{item.name}"  rendered="#{item.type == 'TEXT'}" /> 
+                        <h:outputLabel for="input-text" class="added-label" value="#{item.name}"  rendered="#{item.type == 'TEXT'}" /> 
                         <h:inputText id="input-text" class="added-item" value="Enter answer here" rendered="#{item.type == 'TEXT'}" />
-                        <h:outputLabel for="secret-text" value="#{item.name}"  rendered="#{item.type == 'SECRET'}" /> 
+                        <h:outputLabel for="secret-text" class="added-label" value="#{item.name}"  rendered="#{item.type == 'SECRET'}" /> 
                         <h:inputSecret id="secret-text" class="added-item" value="secret" rendered="#{item.type == 'SECRET'}" />
-                        <h:outputLabel for="text-area" value="#{item.name}"  rendered="#{item.type == 'TEXTAREA'}" /> 
+                        <h:outputLabel for="text-area" class="added-label" value="#{item.name}"  rendered="#{item.type == 'TEXTAREA'}" /> 
                         <h:inputTextarea id="text-area" class="added-item" value="textarea" rendered="#{item.type == 'TEXTAREA'}" />
-                        <h:outputLabel for="checkone-text" value="#{item.name}"  rendered="#{item.type == 'CHECKONE'}" /> 
-                        <h:selectBooleanCheckbox id="checkone-text" class="added-item" value="checkone" rendered="#{item.type == 'CHECKONE'}" />
-                        <h:outputLabel class="added-item" value="#{item.name}" for="text1" rendered="#{item.type == 'LABEL'}" />
-                        <h:outputLabel for="combobox-text" value="#{item.name}"  rendered="#{item.type == 'COMBOBOX'}" /> 
+                        <h:outputLabel for="checkone-text" class="added-label" value="#{item.name}"  rendered="#{item.type == 'CHECKONE'}" /> 
+                        <h:selectBooleanCheckbox id="checkone-text" class="added-item added-checkone" value="checkone" rendered="#{item.type == 'CHECKONE'}" />
+                        <h:outputLabel class="added-label" value="#{item.name}" for="text1" rendered="#{item.type == 'LABEL'}" />
+                        <h:outputLabel for="combobox-text" class="added-label" value="#{item.name}"  rendered="#{item.type == 'COMBOBOX'}" /> 
                         <h:selectOneMenu id="combobox-text" class="added-item" value ="combobox" rendered="#{item.type == 'COMBOBOX'}">
                             <f:selectItem itemValue = "1" itemLabel = "Item 1" />
                             <f:selectItem itemValue = "2" itemLabel = "Item 2" />
