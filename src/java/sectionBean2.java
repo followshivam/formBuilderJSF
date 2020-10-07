@@ -6,12 +6,19 @@
 
 import java.util.List;
 import java.util.ArrayList;
-import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ApplicationScoped;
-import javax.faces.context.FacesContext;
-
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author GOLDY0
@@ -29,11 +36,14 @@ public class sectionBean2 {
 //    private List<sectionBean2> items= new ArrayList<>();
 //    private List<List<sectionBean2>> sections=new ArrayList<>();
     private List<sectionBean2>[] sections = new ArrayList[itemIndex];
-
+    
+    public String setSectionname(){
+        System.out.println("updated section name");
+        return "index.xhtml?faces-redirect=true";
+    }
     public String getSurveyTitle() {
         return surveyTitle;
     }
-
     public void setSurveyTitle(String SurveyTitle) {
         this.surveyTitle = surveyTitle;
     }
@@ -129,7 +139,28 @@ public class sectionBean2 {
         System.out.print(surveyTitle);
         return "index.xhtml?faces-redirect=true";
     }
-
-    
+    public String convertToJson(){
+        System.out.println(sections);
+            Gson gson = new Gson();
+        try (FileWriter saveformfile = new FileWriter("C:\\Users\\GOLDY\\Documents\\NetBeansProjects\\FormBuilder\\src\\javasaveformfile.json")) {
+                String json = gson.toJson(sections);
+                System.out.println(json);
+                gson.toJson(json, saveformfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "index.xhtml?faces-redirect=true";
+    }
+    public String readFromJson(){
+        String jsonpath = "C:\\Users\\GOLDY\\Documents\\NetBeansProjects\\FormBuilder\\src\\javasaveformfile.json";
+    try{
+         Gson gson = new Gson();
+         Reader reader = Files.newBufferedReader(Paths.get("jsonpath"));
+//       import= gson.fromJson(reader,String.class);
+         System.out.println(reader);
+    } catch(Exception e) {
+    }
+    return "index.xhtml?faces-redirect=true";
+    }
     
 }

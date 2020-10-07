@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -17,80 +17,119 @@ import javax.faces.context.FacesContext;
  * @author GOLDY0
  */
 @ManagedBean(name ="sectionBean")
-@SessionScoped
+@ApplicationScoped
 public class sectionBean {
-    private int sectionIndex;
+    private String surveyTitle=null;
+    private int sectionIndex=0;
+    private int itemIndex=8;
     private String name; // label of the field
     private String key; // some key to identify the field
     private String value; // the value of field
     private String type; // can be input,radio,selectbox etc
-    private List<sectionBean> items= new ArrayList<>();
-    
-    
+//    private List<sectionBean> items= new ArrayList<>();
+//    private List<List<sectionBean>> sections=new ArrayList<>();
+    private List<sectionBean>[] sections = new ArrayList[itemIndex];
+
+    public String getSurveyTitle() {
+        return surveyTitle;
+    }
+
+    public void setSurveyTitle(String SurveyTitle) {
+        this.surveyTitle = surveyTitle;
+    }
+    public int getSectionIndex() {
+        return sectionIndex;
+    }
     public sectionBean(){
     }
     public sectionBean(String name,String key,String value,String type) {
-//      items= new ArrayList<>();
         this.name=name;
         this.key=key;
         this.value=value;
         this.type=type;
     }
-     public String getKey() {
+    public void setSectionIndex(int sectionIndex) {
+        this.sectionIndex = sectionIndex;
+    }
+    public String getKey() {
         return key;
     }
     public void setKey(String key) {
         this.key = key;
     }
-
     public String getValue() {
         return value;
     }
-
     public void setValue(String value) {
         this.value = value;
     }
-
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
-    
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    public List<sectionBean> getItems() {
-        return items;
+    public int getItemIndex() {
+        return itemIndex;
+    }
+    public void setItemIndex(int itemIndex) {
+        this.itemIndex = itemIndex;
+    }
+    public List<sectionBean>[] getSections() {
+        return sections;
     }
 
-    public void setItems(List<sectionBean> items) {
-        this.items = items;
+    public void setSections(List<sectionBean>[] sections) {
+        this.sections = sections;
     }
+    
     public void display() {
 		System.out.println("name: "+ this.name);
 		System.out.println("key: "+ this.key);
 		System.out.println("type: "+ this.type);
                 System.out.println("value: "+ this.value);
 	}
+    public String addItemList(){
+        return null;
+    }
+    public String addItem(){
+//        display();
+        sectionBean item=new sectionBean(name,key,value,type);
+        sections[sectionIndex-1].add(item);
+        
+        for(int i= 0; i<itemIndex ; i++) { 
+            System.out.println(sections[i]);
+        } 
+        return "index.xhtml?faces-redirect=true";
+        }
     
     public String addSection(){
-        display();
-        sectionBean item=new sectionBean(name,key,value,type);
-        items.add(item);
-        System.out.println(items);
+        if(sectionIndex==0){
+        for(int i= 0; i<itemIndex ; i++) { 
+            sections[i] = new ArrayList<sectionBean>(); 
+        } }
+       sectionBean sectionItem=new sectionBean(name,key,value,type);
+        sections[sectionIndex].add(sectionItem);
+        sectionIndex=sectionIndex+1;
+        
+        int size=sections.length;
+        System.out.print(size);
+        for(int i= 0; i<itemIndex ; i++) { 
+            System.out.println(sections[i]);
+        } 
         return "index.xhtml?faces-redirect=true";
     }
-    public String removeSection(){
-        items.remove(name);
+    public String addTitle(){
+        System.out.print(surveyTitle);
         return "index.xhtml?faces-redirect=true";
     }
+
+    
     
 }

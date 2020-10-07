@@ -6,7 +6,6 @@
     text-decoration: none;
     margin: 0;
     padding: 0;
-    
 }
 .body{
     margin:0;
@@ -20,27 +19,55 @@
     flex:1;
     display:flex;
     flex-direction: column;
-    height:960px;
-    background-color: black;
-}
-.header{
-    color:#ffffff;
-    background-color: #00b7c2;
-    height:3em;
-    padding-top: .5em;
+    height:900px;
+    background-color: #27253d;
 }
 .button{
-    background-color: black;
+    background-color: #27253d;
     font-size: 1em;
     color:white;
     height:3em;
     width:auto;
     border-top: .2em #f4f4f4;
     border-left:0;
-    
 }
 .button:hover{
-    color:red;
+    background-color: #060608;
+    font-size:1.4em;
+    transition: all 1s ease;
+    /*:#0779e4*/
+}
+.button-itemtag{
+    background-color: #27253d;
+    font-size: 1em;
+    height:3em;
+    text-align: center;
+    color: #78b7bb;
+    height:2em;
+}
+.button-group .button-input{
+    background-color: #27253d;
+    color:white;
+    border: 2px solid #78b7bb;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size:1.5em;
+    resize: false;
+}
+.button-group .header{
+    padding:1.5em 0;
+    color:#ffffff;
+    font-size: 1.2em;
+}
+.button-group .header:hover{
+    font-size:1.5em;
+    transition: all 0.5s ease;
+}
+.header-section{
+    width:100%;
+    text-align:left;
+    font-size: 1.5em;
+    text-transform:capitalize;
 }
 .outer-item {
     flex:7;
@@ -56,33 +83,60 @@
     border: 2px solid grey;
     text-align: center;
     margin-top:0.5em;
-}
-.added-section{
-    text-align: center;
+    background-color: grey;
 }
 .item{
     text-align: center;
  }
- .add-section{
-     
- }
-.item .added-section{
-    text-align: center;
+/* .item .added-section{
     font-family: monospace;
     font-size: 2em;
     text-transform: uppercase;
-    background-color: #318fb5;
     display:inline-block;
     width:100%;
     height:1.5em;
     margin-top: 1em;
-    border: 0.5px solid black;
-    color:#41aea9;
     text-align: center;
     flex:1;
-    border-radius: 2em;
-    
+    margin-left: .5em;
+    background-color: #eeeeee;
+    display:flex;
+}*/
+.item .added-section{
+    display:flex;
+    justify-content: flex-start;
+    margin: 3em;
+    margin-right: 10em;
 }
+ .section-input{   
+  position: relative;
+  width:20%;
+  height:2.5em;
+  border:none;
+  border-bottom: 1px solid;
+  text-transform: uppercase;
+  color: #78b7bb;
+ }
+ .section-input:hover{
+     transition: all 0.5s ease;
+     color: #0fc9e7;
+ }
+ .section-button{
+     background-color: #d6e0f0;
+     color: #78b7bb;
+     font-size:1.2em;
+     font-weight: 900;
+     height:2em;
+     width:2em;
+     border-radius:2em;
+     border:none;
+ }
+ .section-button:hover{
+     color: white;
+     background-color: #0fc9e7;
+     font-size:1.5em;
+     transition: all 0.5s ease;
+ }
 .item .added-item {
     width:50%;
     text-align: left;
@@ -92,24 +146,38 @@
     position:relative;
     left:25%;
 }
-.header-section{
-    display:block;
-    width:100%;
-    text-align: center;font-family: monospace;
-    font-size: 3em;
-    text-transform: uppercase;
-}
-.add-section{
-    position: fixed;
-    right:10%;
-    bottom: 10%;
-    margin-top: 2em;
-    text-align: right;
+.outer-item .form-title{
     display:flex;
-    justify-content: center;
+}
+.form-heading{
+    margin: 1em;
+    margin-left:2em;
+    flex:1;
+    font-family:sans-serif;
+    font-weight: 400;
+    font-size:1.5em;
+}
+.save-button{
+    margin: 1em;
+    margin-right:2em;
+    border-radius:4em;
+    width:10em;
+    border:none;
+    background-color: #78b7bb;
+}
+.save-button:hover{
+    background-color: #0fc9e7;
+    transition: all 0.5s ease;
+}
+.preview-button{
+    margin: 1em;
+    margin-right:2em;
+    border-radius:4em;
+    width:10em;
+    border:none;
+}
+.preview-button:hover{
+    background-color: #0fc9e7;
+    transition: all 0.5s ease;
 }
 
-/*classforform
-button-group
-outer-item 
-    item    add-section*/

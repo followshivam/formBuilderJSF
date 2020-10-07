@@ -9,6 +9,8 @@
          <h:outputStylesheet library="css" name="styles.css"/>
         <script src="jquery-3.5.1.js" type="text/javascript"></script>
         <script type="text/javascript">
+            var x="#{sectionBean2.readFromJson()}";
+            
            function handleClick(ref){
                var a=(ref.id);
                var arr=a.split(":");
@@ -23,57 +25,62 @@
             <h:form class="classforform" id="form-id" prependId="true">
                 
                 <h:panelGroup class="button-group" rendered="true">
-                <h1 class="header">Form Builder 📃</h1> <br/>
+                    <h1 class="header"> &nbsp; &nbsp;<span> ⬅ </span> &nbsp;&nbsp;&nbsp; GO BACK </h1> <br/>
                  <h:inputHidden id="hidden-section" value="#{sectionBean2.sectionIndex}"></h:inputHidden>
                  <h:commandLink id="clickedid" >
                      <f:ajax execute="hidden-section" />
                  </h:commandLink>
-                 <h:inputTextarea value="#{sectionBean2.name}" id="section2" required="true"
+                 <h:outputText value="ITEMS" class="button-itemtag" />
+                    <h:inputTextarea  class="button-input" value="#{sectionBean2.name}" id="section2" required="true"
                              requiredMessage="Please fill this field"/>
-                <h:commandButton class="button" value="Add Section" action="#{sectionBean2.addSection()}">
+                    <h:commandButton class="button" value="Add Section" action="#{sectionBean2.addSection()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='SECTION' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
                      <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
-                </h:commandButton>
-                <h:commandButton class="button" value="Add TEXT" action="#{sectionBean2.addItem()}">
+                    </h:commandButton>
+                    <h:commandButton class="button" value="Add TEXT" action="#{sectionBean2.addItem()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='TEXT' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
                      <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
-                </h:commandButton>
-                <h:commandButton class="button" value="Add TEXTAREA" action="#{sectionBean2.addItem()}">
+                    </h:commandButton>
+                    <h:commandButton class="button" value="Add TEXTAREA" action="#{sectionBean2.addItem()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='TEXTAREA' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
                      <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
-                </h:commandButton>
-                <h:commandButton class="button" value="Add SECRET" action="#{sectionBean2.addItem()}">
+                    </h:commandButton>
+                    <h:commandButton class="button" value="Add SECRET" action="#{sectionBean2.addItem()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='SECRET' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
                      <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
-                </h:commandButton>
-                <h:commandButton class="button" value="Add CHECKONE" action="#{sectionBean2.addItem()}">
+                    </h:commandButton>
+                    <h:commandButton class="button" value="Add CHECKONE" action="#{sectionBean2.addItem()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='CHECKONE' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
                      <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
-                </h:commandButton>
-                <h:commandButton class="button" value="Add LABEL" action="#{sectionBean2.addItem()}">
+                    </h:commandButton>
+                    <h:commandButton class="button" value="Add LABEL" action="#{sectionBean2.addItem()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='LABEL' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
                      <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
-                </h:commandButton>
-                <h:commandButton class="button" value="Add COMBOBOX" action="#{sectionBean2.addItem()}">
+                    </h:commandButton>
+                    <h:commandButton class="button" value="Add COMBOBOX" action="#{sectionBean2.addItem()}">
                      <f:setPropertyActionListener target="#{sectionBean2.type}" value='COMBOBOX' />
                      <f:setPropertyActionListener target="#{sectionBean2.key}" value="1" />
                      <f:setPropertyActionListener target="#{sectionBean2.value}" value="Section1" />
-                </h:commandButton>
+                    </h:commandButton>
                 </h:panelGroup>
                 <h:panelGroup class="outer-item" >
-                <h:panelGroup class="item">    
-                <h:outputText id="section" class="header-section" value="Form" rendered="true" />
-                <ui:repeat value="#{sectionBean2.sections}" var="section" id="ui-outer">
+                <h:panelGroup class="form-title">
+                        <h:outputText id="section" class="form-heading" value="Client Intake Form" rendered="true" />
+                        <h:commandButton class="preview-button" value="👁 PREVIEW" action="#{sectionBean2.convertToJson()}"/>
+                        <h:commandButton class="save-button" value="✔  SAVE FORM" action="#{sectionBean2.convertToJson()}"/>
+                </h:panelGroup>
+                <h:panelGroup class="item">
+                    <ui:repeat value="#{sectionBean2.sections}" var="section" id="ui-outer">
                     <ui:repeat value="#{section}" var="item" id="ui-inner">
-                        
-                        
-                        <h:outputLabel id="section" class="added-section" value="#{item.name}" onclick="handleClick(this)" rendered="#{item.type == 'SECTION'}">
+                        <h:outputLabel for="input-section" id="section" class="added-section" onclick="handleClick(this)" rendered="#{item.type == 'SECTION'}">
+                            <h:inputText class="section-input" id="input-section" value="#{item.name}" rendered="true" />
+                            <h:commandButton class="section-button" value="+" action="#{item.setSectionname()}"/>
                         </h:outputLabel>
                         <h:outputLabel for="input-text" value="#{item.name}"  rendered="#{item.type == 'TEXT'}" /> 
                         <h:inputText id="input-text" class="added-item" value="Enter answer here" rendered="#{item.type == 'TEXT'}" />
@@ -90,12 +97,9 @@
                             <f:selectItem itemValue = "2" itemLabel = "Item 2" />
                         </h:selectOneMenu>
                     </ui:repeat>    
-                </ui:repeat>
+                     </ui:repeat>
                 </h:panelGroup>
-                <h:panelGroup class="add-section">
-                
-                </h:panelGroup>
-                </h:panelGroup>
+               </h:panelGroup>
                 
             </h:form>
         </h:panelGroup>

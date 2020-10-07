@@ -15,8 +15,6 @@ import javax.faces.bean.SessionScoped;
  */
 public class TextField extends ParentComponent{
     
-    private String name;
-
     public TextField() {
     }
     
